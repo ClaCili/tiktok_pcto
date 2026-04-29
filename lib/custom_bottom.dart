@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_pcto/screens/registration_screen.dart';
 
 class CustomBottom extends StatelessWidget {
-  const CustomBottom({super.key});
+  final VoidCallback? onTap;
+  final String prompt;
+  final String actionLabel;
+
+  const CustomBottom({
+    super.key,
+    this.onTap,
+    this.prompt = 'Non hai un account? ',
+    this.actionLabel = 'Registrati',
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(top: BorderSide(color: Colors.grey)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Non hai un account? "),
+          Text(prompt),
           GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const RegistrationScreen()),
-              );
-            },
-            child: Text("Registrati", style: TextStyle(color: Colors.pink)),
+            onTap: onTap,
+            child: Text(actionLabel, style: const TextStyle(color: Colors.pink)),
           ),
         ],
       ),
